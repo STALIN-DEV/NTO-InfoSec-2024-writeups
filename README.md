@@ -1,2 +1,3 @@
 # NTO-InfoSec-2024-writeups
-Writeups for NTO InfoSec 2024
+# Команда "two_raccoons_enough"
+____
